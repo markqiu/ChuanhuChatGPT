@@ -135,6 +135,7 @@ dmypy.json
 
 #vscode
 .vscode
+.vs
 
 # 配置文件/模型文件
 api_key.txt

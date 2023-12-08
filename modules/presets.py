@@ -44,9 +44,17 @@ CONCURRENT_COUNT = 100 # 允许同时使用的用户数量
 SIM_K = 5
 INDEX_QUERY_TEMPRATURE = 1.0
 
-CHUANHU_TITLE = i18n("川虎Chat 🚀")
+CHUANHU_TITLE = i18n("小原同学 🚀")
 
-CHUANHU_DESCRIPTION = i18n("由Bilibili [土川虎虎虎](https://space.bilibili.com/29125536)、[明昭MZhao](https://space.bilibili.com/24807452) 和 [Keldos](https://github.com/Keldos-Li) 开发<br />访问川虎Chat的 [GitHub项目](https://github.com/GaiZhenbiao/ChuanhuChatGPT) 下载最新版脚本")
+CHUANHU_DESCRIPTION = i18n("小原同学是原则投资世界的班长兼助理，欢迎大家来到原则投资的世界！\n\n"
+                           "小原同学是一款基于深度学习的投资助理，可以帮助您快速完成：\n\n"
+                           "1. 投资想法实验 \n"
+                           "2. 投资原则管理 \n"
+                           "3. 投资助手训练 \n"
+                           "4. 投资助手发布 \n"
+                           "小原同学支持多种投资策略，包括：\n"
+                           "1. 股票策略\n"
+                           "2. 基金策略\n")
 
 
 ONLINE_MODELS = [
@@ -166,7 +174,7 @@ MODEL_METADATA = {
     },
     "ERNIE-Bot-4": {
         "model_name": "ERNIE-Bot-4",
-        "token_limit": 1024,
+        "token_limit": 7000,
     },
 }
 
