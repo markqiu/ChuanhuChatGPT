@@ -23,8 +23,8 @@ class State:
             api_host = f"https://{api_host}"
         if api_host.endswith("/v1"):
             api_host = api_host[:-3]
-        self.chat_completion_url = f"{api_host}/v1/chat/completions"
-        self.openai_api_base = f"{api_host}/v1"
+        self.chat_completion_url = f"{api_host}/chat/completions"
+        self.openai_api_base = f"{api_host}"
         self.balance_api_url = f"{api_host}/dashboard/billing/credit_grants"
         self.usage_api_url = f"{api_host}/dashboard/billing/usage"
         os.environ["OPENAI_API_BASE"] = api_host

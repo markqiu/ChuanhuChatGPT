@@ -7,7 +7,7 @@ asyncio.set_event_loop_policy(asyncio.DefaultEventLoopPolicy())
 with open("config.json", "r", encoding="utf-8") as f:
     config = commentjson.load(f)
 api_key = config["openai_api_key"]
-url = config["openai_api_base"] + "/v1/chat/completions" if "openai_api_base" in config else "https://api.openai.com/v1/chat/completions"
+url = config["openai_api_base"] + "/chat/completions" if "openai_api_base" in config else "https://api.openai.com/v1/chat/completions"
 
 
 def get_current_strings():
