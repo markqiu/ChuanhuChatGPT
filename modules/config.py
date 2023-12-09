@@ -33,13 +33,10 @@ __all__ = [
     "HIDE_MY_KEY",
 ]
 
-# 添加一个统一的config文件，避免文件过多造成的疑惑（优先级最低）
+# 添加一个统一的config文件，避免文件过多造成的疑惑（优先级最低），如果没有，则导入一份config_excample.json填空
 # 同时，也可以为后续支持自定义功能提供config的帮助
-if os.path.exists("config.json"):
-    with open("config.json", "r", encoding='utf-8') as f:
-        config = json.load(f)
-else:
-    config = {}
+with open("config.json" if os.path.exists("config.json") else "config_example.json", "r", encoding='utf-8') as f:
+    config = json.load(f)
 
 
 def load_config_to_environ(key_list):
@@ -58,7 +55,7 @@ def load_environ_to_config():
             config[key.lower()] = value
             pass
         finally:
-            logging.info(f"加载环境变量{key.lower()}，值：{config[key.lower()]}...")
+            logging.info(f"加载环境变量{key.lower()} ...")
 
 
 hide_history_when_not_logged_in = config.get(
