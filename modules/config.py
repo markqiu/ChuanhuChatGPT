@@ -1,5 +1,6 @@
 from collections import defaultdict
 from contextlib import contextmanager
+from json import JSONDecodeError
 import os
 import logging
 import sys
@@ -46,6 +47,19 @@ def load_config_to_environ(key_list):
     for key in key_list:
         if key in config:
             os.environ[key.upper()] = os.environ.get(key.upper(), config[key])
+
+
+def load_environ_to_config():
+    global config
+    for key, value in os.environ.items():
+        try:
+            config[key.lower()] = json.loads(value)
+        except Exception as e:
+            config[key.lower()] = value
+            pass
+        finally:
+            logging.info(f"加载环境变量{key}...")
+
 
 hide_history_when_not_logged_in = config.get(
     "hide_history_when_not_logged_in", False)
@@ -143,6 +157,7 @@ os.environ["ERNIE_APIKEY"] = ernie_api_key
 ernie_secret_key = config.get("ernie_secret_key", "")
 os.environ["ERNIE_SECRETKEY"] = ernie_secret_key
 
+load_environ_to_config()
 load_config_to_environ(["openai_api_type", "azure_openai_api_key", "azure_openai_api_base_url",
                        "azure_openai_api_version", "azure_deployment_name", "azure_embedding_deployment_name", "azure_embedding_model_name"])
 
