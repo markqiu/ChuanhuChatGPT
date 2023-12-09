@@ -30,7 +30,7 @@ def get_model(
     lora_choices = ["No LoRA"]
     dont_change_lora_selector = False
     if model_type != ModelType.OpenAI:
-        config.local_embedding = True
+        config['local_embedding'] = True
     # del current_model.model
     model = original_model
     chatbot = gr.Chatbot.update(label=model_name)
