@@ -1,3 +1,5 @@
+import erniebot as eb
+
 from ..presets import *
 from ..utils import *
 
@@ -5,12 +7,16 @@ from .base_model import BaseLLMModel
 
 
 class ERNIE_Client(BaseLLMModel):
-    def __init__(self, model_name, api_key, secret_key) -> None:
+    def __init__(self, model_name, api_key, secret_key, api_type: str = "aistudio", access_token: str = None) -> None:
         super().__init__(model_name=model_name)
-        self.api_key = api_key
-        self.api_secret = secret_key
-        if None in [self.api_secret, self.api_key]:
-            raise Exception("请在配置文件或者环境变量中设置文心一言的API Key 和 Secret Key")
+        self.auth_config = {
+            "api_type": api_type,
+        }
+        self.auth_config["ak"] = api_key
+        self.auth_config["sk"] = secret_key
+        if access_token:
+            self.auth_config["access_token"] = access_token
+        self.eb = eb.ChatCompletion
 
         if self.model_name == "ERNIE-Bot-turbo":
             self.ERNIE_url = "https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/eb-instant?access_token="
