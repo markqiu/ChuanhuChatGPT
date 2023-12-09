@@ -4,7 +4,7 @@ emoji: 😻
 colorFrom: pink
 colorTo: blue
 sdk: gradio
-sdk_version: 4.8.0
+sdk_version: 3.43.2
 app_file: ChuanhuChatbot.py
 pinned: false
 license: apache-2.0
