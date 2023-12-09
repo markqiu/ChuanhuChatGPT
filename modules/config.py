@@ -1,6 +1,5 @@
 from collections import defaultdict
 from contextlib import contextmanager
-from json import JSONDecodeError
 import os
 import logging
 import sys
@@ -39,11 +38,10 @@ with open("config.json" if os.path.exists("config.json") else "config_example.js
     config = json.load(f)
 
 
-def load_config_to_environ(key_list):
+def load_config_to_environ():
     global config
-    for key in key_list:
-        if key in config:
-            os.environ[key.upper()] = os.environ.get(key.upper(), config[key])
+    for key in config:
+        os.environ[key.upper()] = os.environ.get(key.upper(), str(config[key]))
 
 
 def load_environ_to_config():
@@ -155,8 +153,7 @@ ernie_secret_key = config.get("ernie_secret_key", "")
 os.environ["ERNIE_SECRETKEY"] = ernie_secret_key
 
 load_environ_to_config()
-load_config_to_environ(["openai_api_type", "azure_openai_api_key", "azure_openai_api_base_url",
-                       "azure_openai_api_version", "azure_deployment_name", "azure_embedding_deployment_name", "azure_embedding_model_name"])
+load_config_to_environ()
 
 
 usage_limit = os.environ.get("USAGE_LIMIT", config.get("usage_limit", 120))
