@@ -59,8 +59,6 @@ def load_environ_to_config():
             pass
         finally:
             logging.info(f"加载环境变量{key.lower()}，值：{config[key.lower()]}...")
-            if key == 'users':
-                logging.info(config['users'][0][1])
 
 
 hide_history_when_not_logged_in = config.get(

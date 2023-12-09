@@ -23,7 +23,7 @@ import pandas as pd
 
 from modules.presets import *
 from . import shared
-from modules.config import retrieve_proxy, hide_history_when_not_logged_in
+from modules.config import retrieve_proxy, hide_history_when_not_logged_in, config
 
 if TYPE_CHECKING:
     from typing import TypedDict
@@ -822,10 +822,8 @@ def beautify_err_msg(err_msg):
 
 def auth_from_conf(username, password):
     try:
-        with open("config.json", encoding="utf-8") as f:
-            conf = json.load(f)
-        usernames, passwords = [i[0] for i in conf["users"]], [
-            i[1] for i in conf["users"]
+        usernames, passwords = [i[0] for i in config["users"]], [
+            i[1] for i in config["users"]
         ]
         if username in usernames:
             if passwords[usernames.index(username)] == password:
