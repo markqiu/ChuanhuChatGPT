@@ -84,9 +84,22 @@ ONLINE_MODELS = [
     "讯飞星火大模型V2.0",
     "讯飞星火大模型V1.5",
     "Claude",
-    "ernie-bot-turbo",
-    "ernie-bot",
-    "ernie-bot-4",
+    'XuanYuan-70B-Chat-'
+    'Qianfan-BLOOMZ-7B-compressed',
+    'ChatGLM2-6B-32K',
+    'Llama-2-7b-chat',
+    'Llama-2-70b-chat',
+    'Qianfan-Chinese-Llama-2-7B',
+    'ERNIE-Bot-8k',
+    'ERNIE-Bot-turbo',
+    'ERNIE-Bot',
+    'ERNIE-Bot-turbo-AI',
+    'AquilaChat-7B',
+    'Qianfan-Chinese-Llama-2-13B',
+    'ERNIE-Bot-4',
+    'Llama-2-13b-chat',
+    'XuanYuan-70B-Chat-4bit',
+    'BLOOMZ-7B',
 ]
 
 LOCAL_MODELS = [
@@ -164,16 +177,20 @@ MODEL_METADATA = {
         "model_name": "Claude",
         "token_limit": 4096,
     },
-    "ernie-bot-turbo": {
-        "model_name": "ernie-bot-turbo",
+    "ERNIE-Bot-turbo": {
+        "model_name": "ERNIE-Bot-turbo",
         "token_limit": 3000,
     },
-    "ernie-bot": {
-        "model_name": "ernie-bot",
+    "ERNIE-Bot": {
+        "model_name": "ERNIE-Bot",
         "token_limit": 3000,
     },
-    "ernie-bot-4": {
-        "model_name": "ernie-bot-4",
+    "ERNIE-Bot-4": {
+        "model_name": "ERNIE-Bot-4",
+        "token_limit": 3000,
+    },
+   "XuanYuan-70B-Chat-4bit": {
+        "model_name": "XuanYuan-70B-Chat-4bit",
         "token_limit": 3000,
     },
 }

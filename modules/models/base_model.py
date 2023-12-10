@@ -194,7 +194,7 @@ class ModelType(Enum):
             model_type = ModelType.Claude
         elif "qwen" in model_name_lower:
             model_type = ModelType.Qwen
-        elif "ernie" in model_name_lower:
+        elif "ernie" in model_name_lower or "xuanyuan" in model_name_lower:
             model_type = ModelType.ERNIE
         elif "dall" in model_name_lower:
             model_type = ModelType.DALLE3
