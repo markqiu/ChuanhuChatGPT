@@ -1,5 +1,5 @@
 import os
-import erniebot as eb
+import qianfan
 
 from ..presets import *
 from ..utils import *
@@ -8,11 +8,9 @@ from .base_model import BaseLLMModel
 
 
 class ERNIE_Client(BaseLLMModel):
-    def __init__(self, model_name, api_key, secret_key, api_type: str = "aistudio", access_token: str = None) -> None:
+    def __init__(self, model_name, api_key, secret_key) -> None:
         super().__init__(model_name=model_name)
-        self.auth_config = {"api_type": api_type, "ak": api_key, "sk": secret_key}
-        if access_token:
-            self.auth_config["access_token"] = access_token
+        self.chat_completion = qianfan.ChatCompletion(ak=api_key, sk=secret_key)
 
     def get_answer_stream_iter(self):
         system_prompt = self.system_prompt
@@ -29,15 +27,11 @@ class ERNIE_Client(BaseLLMModel):
             "temperature": self.temperature,
         }
 
-        if self.model_name == "chat_file":
-            response = eb.ChatFile.create(_config_=self.auth_config, **data, stream=True)
-        else:
-            response = eb.ChatCompletion.create(
-                _config_=self.auth_config, model=self.model_name, **data, stream=True
-            )
+        response = self.chat_completion.do(model=self.model_name, **data, stream=True)
+        partial_text = ""
         for result in response:
-            yield result.get_result()
-
+            partial_text += result['result']
+            yield partial_text
 
     def get_answer_at_once(self):
         system_prompt = self.system_prompt
@@ -48,16 +42,10 @@ class ERNIE_Client(BaseLLMModel):
         # 去除history中 history的role为system的
         history = [i for i in history if i["role"] != "system"]
 
-
         data = {
             "messages": history,
             "top_p": self.top_p,
             "temperature": self.temperature,
         }
 
-        if self.model_name == "chat_file":
-            return eb.ChatFile.create(_config_=self.auth_config, **data, stream=False).get_result()
-        else:
-            return eb.ChatCompletion.create(
-                _config_=self.auth_config, model=self.model_name, **data, stream=False
-            ).get_result()
+        return self.chat_completion.do(model=self.model_name, **data)['result']

@@ -128,7 +128,7 @@ def get_model(
             model = Qwen_Client(model_name, user_name=user_name)
         elif model_type == ModelType.ERNIE:
             from .ERNIE import ERNIE_Client
-            model = ERNIE_Client(model_name, api_key=os.getenv("ERNIE_APIKEY"),secret_key=os.getenv("ERNIE_SECRETKEY"), api_type=os.getenv("ERNIE_API_TYPE"), access_token=os.getenv("ERNIE_ACCESS_TOKEN"))
+            model = ERNIE_Client(model_name, api_key=os.getenv("ERNIE_APIKEY"),secret_key=os.getenv("ERNIE_SECRETKEY"))
         elif model_type == ModelType.DALLE3:
             from .DALLE3 import OpenAI_DALLE3_Client
             access_key = os.environ.get("OPENAI_API_KEY", access_key)
